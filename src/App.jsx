@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 
 function App() {
   const [data, setData] = useState([]);
+  const [cuisines, setCuisines] = useState([])
   const [sortBy, setSortBy] = useState("name");
   const [order, setOrder] = useState("ascending");
+  const [filter, setFilter] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -11,16 +13,23 @@ function App() {
         const url = new URL("http://localhost:11194/api/data");
         url.searchParams.append("sortBy", sortBy);
         url.searchParams.append("order", order);
+        url.searchParams.append("filter", filter);
 
         const response = await fetch(url);
         const jsonData = await response.json();
         setData(jsonData);
+
+
+        const cuisinesArr = jsonData.map(obj => obj.cuisine)
+        if (!filter) {
+          setCuisines([...new Set(cuisinesArr)])
+        }
       } catch (error) {
         throw new Error(`Error contacting API: ${response.statusText}`);
       }
     };
     fetchData();
-  }, [sortBy, order]);
+  }, [sortBy, order, filter]);
 
   const handleSortByChange = (event) => {
     setSortBy(event.target.value);
@@ -28,6 +37,10 @@ function App() {
 
   const handleOrderChange = (event) => {
     setOrder(event.target.value);
+  };
+
+  const handleFilterChange = (event) => {
+    setFilter(event.target.value);
   };
 
   return (
@@ -46,6 +59,13 @@ function App() {
           <select name="order" id="order" onChange={handleOrderChange}>
             <option value="ascending">Ascending</option>
             <option value="descending">Descending</option>
+          </select>
+          <p>Cuisine:</p>
+          <select name="filter" id="filter" onChange={handleFilterChange}>
+            <option value="">All</option>
+            {cuisines.map((item, i) => (
+              <option key={i} value={item}>{item}</option>
+            ))}
           </select>
         </nav>
       </div>
