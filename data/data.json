@@ -1,0 +1,62 @@
+[
+    {
+        "name": "Boulangerie La Plen",
+        "rating": 4.22,
+        "cuisine": "French",
+        "distance_km": 1.2
+    },
+    {
+        "name": "Sanskruti",
+        "rating": 4.9,
+        "cuisine": "Indian",
+        "distance_km": 0.5
+    },
+    {
+        "name": "Bella Italia",
+        "rating": 4.2,
+        "cuisine": "Italian",
+        "distance_km": 2.0
+    },
+    {
+        "name": "Shogun Ramen",
+        "rating": 4.7,
+        "cuisine": "Japanese",
+        "distance_km": 3.5
+    },
+    {
+        "name": "Choi Hing",
+        "rating": 4.3,
+        "cuisine": "Chinese",
+        "distance_km": 1.8
+    },
+    {
+        "name": "Khan's",
+        "rating": 4.3,
+        "cuisine": "Indian",
+        "distance_km": 1.1
+    },
+    {
+        "name": "Double-Zero",
+        "rating": 4.6,
+        "cuisine": "Italian",
+        "distance_km": 2.5
+    },
+    {
+        "name": "Bar San Juan",
+        "rating": 4.4,
+        "cuisine": "Spanish",
+        "distance_km": 0.8
+    },
+    {
+        "name": "V&V",
+        "rating": 4.7,
+        "cuisine": "French",
+        "distance_km": 2.2
+    },
+    {
+        "name": "Eighth Day",
+        "rating": 4.1,
+        "cuisine": "Vegetarian",
+        "distance_km": 0.9
+    }
+]
