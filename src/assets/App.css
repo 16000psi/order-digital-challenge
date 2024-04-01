@@ -1,0 +1,39 @@
+body {
+  background-color: gray;
+}
+
+.app {
+  max-width: 1000px;
+  margin: auto;
+  padding: 15px;
+  background-color: white;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.sort-by {
+  display: flex;
+  justify-content: space-around;
+}
+
+select {
+  margin: 5px 0 15px 0;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+table {
+  width: 100%;
+  margin-top: 15px;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid black;
+}
+
+}

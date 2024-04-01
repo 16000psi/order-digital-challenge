@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
+import "./assets/App.css";
 
 function App() {
   const [data, setData] = useState([]);
-  const [cuisines, setCuisines] = useState([])
+  const [cuisines, setCuisines] = useState([]);
   const [sortBy, setSortBy] = useState("name");
   const [order, setOrder] = useState("ascending");
   const [filter, setFilter] = useState("");
@@ -19,10 +20,9 @@ function App() {
         const jsonData = await response.json();
         setData(jsonData);
 
-
-        const cuisinesArr = jsonData.map(obj => obj.cuisine)
+        const cuisinesArr = jsonData.map((obj) => obj.cuisine);
         if (!filter) {
-          setCuisines([...new Set(cuisinesArr)])
+          setCuisines([...new Set(cuisinesArr)]);
         }
       } catch (error) {
         throw new Error(`Error contacting API: ${response.statusText}`);
@@ -44,10 +44,10 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="app">
       <h2>Restaurant Portal</h2>
       <div>
-        <nav>
+        <nav className="sort-by">
           <p>List items by:</p>
           <select name="fields" id="fields" onChange={handleSortByChange}>
             <option value="name">Name</option>
