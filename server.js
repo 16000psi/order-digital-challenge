@@ -7,8 +7,16 @@ const port = 11194;
 
 app.use(cors());
 
-app.get("/api/data", (_, res) => {
-  res.json(data);
+app.get("/api/data", (req, res) => {
+  const { sortBy, order } = req.query;
+  const sortedData = data.sort((a, b) => {
+    if (a[sortBy] < b[sortBy]) {
+      return order === "descending" ? 1 : -1;
+    } else {
+      return order === "descending" ? -1 : 1;
+    }
+  });
+  res.json(sortedData);
 });
 
 app.listen(port, () => {
