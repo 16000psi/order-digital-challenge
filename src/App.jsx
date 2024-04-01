@@ -3,7 +3,7 @@ import "./assets/App.css";
 
 function App() {
   const [data, setData] = useState([]);
-  const [cuisines, setCuisines] = useState([]);
+  const [cuisines, setCuisines] = useState([])
   const [sortBy, setSortBy] = useState("name");
   const [order, setOrder] = useState("ascending");
   const [filter, setFilter] = useState("");
@@ -11,18 +11,21 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url = new URL("http://localhost:11194/api/data");
-        url.searchParams.append("sortBy", sortBy);
-        url.searchParams.append("order", order);
-        url.searchParams.append("filter", filter);
-
-        const response = await fetch(url);
+        const params = new URLSearchParams({
+            sortBy: sortBy,
+            order: order,
+            filter: filter
+        }).toString();
+        
+        const apiUrl = `/api/data?${params}`;
+        const response = await fetch(apiUrl);
         const jsonData = await response.json();
         setData(jsonData);
 
-        const cuisinesArr = jsonData.map((obj) => obj.cuisine);
+
+        const cuisinesArr = jsonData.map(obj => obj.cuisine)
         if (!filter) {
-          setCuisines([...new Set(cuisinesArr)]);
+          setCuisines([...new Set(cuisinesArr)])
         }
       } catch (error) {
         throw new Error(`Error contacting API: ${response.statusText}`);
@@ -30,6 +33,7 @@ function App() {
     };
     fetchData();
   }, [sortBy, order, filter]);
+
 
   const handleSortByChange = (event) => {
     setSortBy(event.target.value);
@@ -42,6 +46,7 @@ function App() {
   const handleFilterChange = (event) => {
     setFilter(event.target.value);
   };
+
 
   return (
     <div className="app">
